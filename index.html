@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="./style.css">
+    <title>SCDS Live Results</title>
+  </head>
+  <body>
+    <div class="main-body">
+      <h1>Live results from SCDS</h1>
+      <p>Powering a modern, secure and responsive live results solution with SPORTSYSTEMS data.</p>
+      <p>This software may be used freely by customer clubs. <a id="register-button">Signup on our website</a>.</p>
+
+      <p class="small text-muted">Node.js <span id="node-version"></span>, Chromium <span id="chrome-version"></span>, and Electron <span id="electron-version"></span>.</p>
+    </div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>

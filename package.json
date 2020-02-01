@@ -1,0 +1,21 @@
+{
+  "name": "electron-testing",
+  "version": "0.0.1",
+  "description": "A minimal Electron application to push results from local machine",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/Chester-le-Street-ASC/Live-Results-Client",
+  "keywords": [
+    "SPORTSYSTEMS",
+    "live",
+    "results",
+    "swimming"
+  ],
+  "author": "Swimming Club Data Systems",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "electron": "^7.1.11"
+  }
+}
