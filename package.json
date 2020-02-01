@@ -1,5 +1,5 @@
 {
-  "name": "electron-testing",
+  "name": "live-results-client",
   "version": "0.0.1",
   "description": "A minimal Electron application to push results from local machine",
   "main": "main.js",
