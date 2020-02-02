@@ -5,14 +5,22 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./dist/css/custom.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>SCDS Live Results</title>
   </head>
   <body>
-    <div class="main-body">
-      <h1>Live results from SCDS</h1>
+    <div class="container-fluid py-3">
+      <div class="row mb-3 align-items-center">
+        <div class="col-2">
+          <img src="./assets/images/logos/scds.png" class="img-fluid">
+        </div>
+        <div class="col">
+          <h1 class="mb-0">Live results from SCDS</h1>
+        </div>
+      </div>
       <p>Powering a modern, secure and responsive live results solution with SPORTSYSTEMS data.</p>
-      <p>This software may be used freely by customer clubs. <a id="register-button">Signup on our website</a>.</p>
+      <p>This software may be used freely by customer clubs. <span class="test-button" id="register-button">Test beep</span>.</p>
 
       <p class="small text-muted">Node.js <span id="node-version"></span>, Chromium <span id="chrome-version"></span>, and Electron <span id="electron-version"></span>.</p>
     </div>
@@ -20,4 +28,8 @@
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
   </body>
+
+  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./node_modules/@popperjs/core/dist/umd/popper.js"></script>
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </html>

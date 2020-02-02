@@ -49,47 +49,47 @@ const template = [
     ]
   },
   // { role: 'editMenu' }
-  {
-    label: 'Edit',
-    submenu: [
-      { role: 'undo' },
-      { role: 'redo' },
-      { type: 'separator' },
-      { role: 'cut' },
-      { role: 'copy' },
-      { role: 'paste' },
-      ...(isMac ? [
-        { role: 'pasteAndMatchStyle' },
-        { role: 'delete' },
-        { role: 'selectAll' },
-        { type: 'separator' },
-        {
-          label: 'Speech',
-          submenu: [
-            { role: 'startspeaking' },
-            { role: 'stopspeaking' }
-          ]
-        }
-      ] : [
-        { role: 'delete' },
-        { type: 'separator' },
-        { role: 'selectAll' }
-      ])
-    ]
-  },
+  // {
+  //   label: 'Edit',
+  //   submenu: [
+  //     { role: 'undo' },
+  //     { role: 'redo' },
+  //     { type: 'separator' },
+  //     { role: 'cut' },
+  //     { role: 'copy' },
+  //     { role: 'paste' },
+  //     ...(isMac ? [
+  //       { role: 'pasteAndMatchStyle' },
+  //       { role: 'delete' },
+  //       { role: 'selectAll' },
+  //       { type: 'separator' },
+  //       {
+  //         label: 'Speech',
+  //         submenu: [
+  //           { role: 'startspeaking' },
+  //           { role: 'stopspeaking' }
+  //         ]
+  //       }
+  //     ] : [
+  //       { role: 'delete' },
+  //       { type: 'separator' },
+  //       { role: 'selectAll' }
+  //     ])
+  //   ]
+  // },
   // { role: 'viewMenu' }
   {
-    label: 'View',
+    label: 'Developer',
     submenu: [
       { role: 'reload' },
       { role: 'forcereload' },
       { role: 'toggledevtools' },
-      { type: 'separator' },
-      { role: 'resetzoom' },
-      { role: 'zoomin' },
-      { role: 'zoomout' },
-      { type: 'separator' },
-      { role: 'togglefullscreen' }
+      // { type: 'separator' },
+      // { role: 'resetzoom' },
+      // { role: 'zoomin' },
+      // { role: 'zoomout' },
+      // { type: 'separator' },
+      // { role: 'togglefullscreen' }
     ]
   },
   // { role: 'windowMenu' }
@@ -97,7 +97,7 @@ const template = [
     label: 'Window',
     submenu: [
       { role: 'minimize' },
-      { role: 'zoom' },
+      // { role: 'zoom' },
       ...(isMac ? [
         { type: 'separator' },
         { role: 'front' },
@@ -115,7 +115,14 @@ const template = [
         label: 'Learn More',
         click: async () => {
           const { shell } = require('electron')
-          await shell.openExternal('https://electronjs.org')
+          await shell.openExternal('https://www.myswimmingclub/uk/live')
+        }
+      },
+      {
+        label: 'SPORTSYSTEMS Help',
+        click: async () => {
+          const { shell } = require('electron')
+          await shell.openExternal('https://helpdesk.sportsys.co.uk/')
         }
       }
     ]
@@ -138,7 +145,8 @@ function createWindow () {
       contextIsolation: true,
       nodeIntegration: false,
       preload: path.join(__dirname, 'preload.js')
-    }
+    },
+    icon: './assets/images/logos/scds.png'
   })
 
   // and load the index.html of the app.

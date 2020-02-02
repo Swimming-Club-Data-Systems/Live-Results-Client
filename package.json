@@ -4,7 +4,10 @@
   "description": "A minimal Electron application to push results from local machine",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "scss": "node-sass --output-style compressed -o dist/css scss",
+    "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
+    "gen-css": "npm run scss && npm run autoprefixer"
   },
   "repository": "https://github.com/Chester-le-Street-ASC/Live-Results-Client",
   "keywords": [
@@ -16,6 +19,17 @@
   "author": "Swimming Club Data Systems",
   "license": "UNLICENSED",
   "devDependencies": {
-    "electron": "^7.1.11"
+    "electron": "^7.1.11",
+    "sass": "^1.25.0",
+    "postcss-cli": "^7.1.0",
+    "autoprefixer": "^9.7.4",
+    "node-sass": "^4.13.1"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.0.4",
+    "bootstrap": "^4.4.1",
+    "electron-store": "^5.1.0",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.1"
   }
 }

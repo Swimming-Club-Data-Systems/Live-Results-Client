@@ -1,0 +1,9 @@
+// CSS
+
+// Your variable overrides
+$body-bg: rgb(33, 40, 54);
+$body-color: #fff;
+
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
