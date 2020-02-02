@@ -124,7 +124,34 @@ const template = [
           const { shell } = require('electron')
           await shell.openExternal('https://helpdesk.sportsys.co.uk/')
         }
-      }
+      },
+      ...(!isMac ? [
+        { type: 'separator' },
+        {
+          label: 'About',
+          click: async () => {
+            const { dialog } = require('electron')
+            const os = require('os')
+            const options = {
+              type: 'info',
+              title: 'SCDS Live Results (Visual)',
+              message:
+                "Electron version: " + process.versions.electron + os.EOL +
+                "Chrome version: " + process.versions.chrome + os.EOL +
+                "V8 version: " + process.versions.v8 + os.EOL +
+                "Node.js version: " + process.versions.node + os.EOL +
+                "Architecture: " + os.arch + os.EOL + 
+                "Platform: " + os.platform + os.EOL + 
+                "Home directory: " + os.homedir + os.EOL + os.EOL +
+                "Copyright Swimming Club Data Systems",
+              buttons: ['OK']
+            }
+            await dialog.showMessageBox(options, (index) => {
+              // Do nothing
+            })
+          }
+        }
+      ] : [])
     ]
   }
 ]
