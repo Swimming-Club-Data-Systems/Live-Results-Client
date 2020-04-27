@@ -19,11 +19,11 @@
   "author": "Swimming Club Data Systems",
   "license": "UNLICENSED",
   "devDependencies": {
-    "electron": "^7.1.11",
-    "sass": "^1.25.0",
-    "postcss-cli": "^7.1.0",
     "autoprefixer": "^9.7.4",
-    "node-sass": "^4.13.1"
+    "electron": "^7.2.3",
+    "node-sass": "^4.13.1",
+    "postcss-cli": "^7.1.0",
+    "sass": "^1.25.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.0.4",
