@@ -115,7 +115,7 @@ const template = [
         label: 'Learn More',
         click: async () => {
           const { shell } = require('electron')
-          await shell.openExternal('https://www.myswimmingclub/uk/live')
+          await shell.openExternal('https://www.myswimmingclub.uk/live')
         }
       },
       {
