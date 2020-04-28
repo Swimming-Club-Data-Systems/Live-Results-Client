@@ -10,19 +10,97 @@
     <title>SCDS Live Results</title>
   </head>
   <body>
-    <div class="container-fluid py-3">
-      <div class="row mb-3 align-items-center">
-        <div class="col-2">
-          <img src="./assets/images/logos/scds.png" class="img-fluid">
+    <div class="bg-dark mb-4">
+      <div class="container-fluid py-3">
+        <div class="row mb-3 align-items-center">
+          <div class="col-auto">
+            <img src="./assets/images/logos/scds.png" class="logo">
+          </div>
+          <div class="col">
+            <h1 class="mb-0">SCDS Live Results Client</h1>
+          </div>
         </div>
-        <div class="col">
-          <h1 class="mb-0">SCDS Live Results Uploader</h1>
+        <p>
+          The SCDS Live Results Client connects to your account on our cloud service.
+        </p>
+        <p>
+          The cloud service and this software may be used freely by all UK swimming clubs.
+        </p>
+      </div>
+    </div>
+    
+    <div class="container-fluid">
+      <div id="central">
+        <div class="row justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-6">
+            <div class="card card-body text-dark">
+              <h2>Get started</h2>
+              <p class="lead">
+                Tell us a few details and we'll get connected!
+              </p>
+
+              <form id="connect-form">
+                <div class="form-group">
+                  <label for="org-id">
+                    Organisation ID
+                  </label>
+                  <input type="text" id="org-id" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="api-key">
+                    API Key
+                  </label>
+                  <input type="text" id="api-key" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="files-location">
+                    SportSystems Gala Files Directory
+                  </label>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="files-location" required>
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                  </div>
+                </div>
+
+                <p class="mb-0">
+                  <button class="btn btn-primary" type="submit">
+                    Connect
+                  </button>
+                </p>
+
+                <hr>
+
+                <h2>
+                  First time?
+                </h2>
+                <p>
+                  It's great to have you with us. Create an account to get started.
+                </p>
+                <p class="mb-0">
+                  <button class="btn btn-primary" type="button" id="create-account-button">
+                    Create account
+                  </button>
+                </p>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-      <p>We currently upload files from SPORTSYSTEMS over SSH. In future, we'll be powering a modern, secure and responsive live results solution with SPORTSYSTEMS data, making use of fast HTTPS requests in place of FTP uploads.</p>
-      <p>This software may be used freely by customer clubs. <span class="test-button" id="register-button">Test beep</span>.</p>
+    </div>
 
-      <p class="small text-muted">Node.js <span id="node-version"></span>, Chromium <span id="chrome-version"></span>, and Electron <span id="electron-version"></span>.</p>
+    <div class="bg-dark mt-4 py-3">
+      <div class="container-fluid">
+        <p>
+          &copy; Swimming Club Data Systems 2020
+        </p>
+        <!-- <p>
+          <span class="test-button" id="register-button">Test beep</span>
+        </p> -->
+  
+        <p class="mb-0 small text-muted">Node.js <span id="node-version"></span>, Chromium <span id="chrome-version"></span>, and Electron <span id="electron-version"></span>.</p>
+      </div>
     </div>
 
     <!-- You can also require other files to run in this process -->

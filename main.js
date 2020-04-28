@@ -5,8 +5,10 @@ const {
   Menu,
   MenuItem,
   ipcMain,
+  ipcRenderer,
   shell,
-  remote
+  remote,
+  dialog
 } = require('electron')
 
 const path = require('path')
@@ -104,8 +106,8 @@ const template = [
         { type: 'separator' },
         { role: 'window' }
       ] : [
-        { role: 'close' }
-      ])
+          { role: 'close' }
+        ])
     ]
   },
   {
@@ -140,8 +142,8 @@ const template = [
                 "Chrome version: " + process.versions.chrome + os.EOL +
                 "V8 version: " + process.versions.v8 + os.EOL +
                 "Node.js version: " + process.versions.node + os.EOL +
-                "Architecture: " + os.arch + os.EOL + 
-                "Platform: " + os.platform + os.EOL + 
+                "Architecture: " + os.arch + os.EOL +
+                "Platform: " + os.platform + os.EOL +
                 "Home directory: " + os.homedir + os.EOL + os.EOL +
                 "Copyright Swimming Club Data Systems",
               buttons: ['OK']
@@ -161,9 +163,9 @@ Menu.setApplicationMenu(menu)
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let mainWindow, fileWorkerWindow
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
@@ -216,3 +218,48 @@ ipcMain.on('toMain', (event, args) => {
   shell.beep()
   // mainWindow.webContents.send('fromMain', responseObj);
 });
+
+ipcMain.on('select-dirs', async (event, arg) => {
+  const result = await dialog.showOpenDialog(mainWindow, {
+    properties: [
+      'openDirectory',
+      'showHiddenFiles'
+    ]
+  })
+  console.log('directories selected', result.filePaths)
+  mainWindow.webContents.send('file-select-path', result.filePaths);
+})
+
+ipcMain.on('connectionDetails', async (event, arg) => {
+  // console.log(arg);
+  // mainWindow.webContents.send('connectionDetails', {response: true});
+
+  if (true) {
+    fileWorkerWindow = new BrowserWindow({
+      show: false,
+      webPreferences: { nodeIntegration: true }
+    });
+    fileWorkerWindow.loadFile('./workers/file-worker-window.html')
+      .then(() => {
+          // Handle any error that occurred in any of the previous
+          // promises in the chain.
+          fileWorkerWindow.webContents.send('fWW.ListenTo', arg.directory)
+          console.log('Sent watch instruction')
+        })
+        //
+      .catch((err) => {
+        // Handle any error that occurred in any of the previous
+        // promises in the chain.
+        console.log(err);
+      });
+  }
+  mainWindow.webContents.send('connectionDetails', { response: true });
+})
+
+ipcMain.on('fWW.Log', async (event, arg) => {
+  console.log(arg);
+})
+
+ipcMain.on('fWW', async (event, arg) => {
+  console.log(arg);
+})
