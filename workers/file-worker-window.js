@@ -3,26 +3,29 @@ const {
 } = require('electron');
 const fs = require('fs')
 
+let fileWatch;
+
 ipcRenderer.send('fWW', 'connected');
 
-const watcher;
+// ipcRenderer.on('fWW.ListenTo', (event, arg) => {
+//   ipcRenderer.send('fWW', 'Enabling watcher');
+// })
 
 ipcRenderer.on('fWW.ListenTo', (event, directory) => {
-  // try {
-  //   watcher = fs.watch(directory, { recursive: true }, (eventType, filename) => {
-  //     if (filename) {
-  //       console.log(filename);
-  //       ipcRenderer.send('fWW.Log', filename);
-  //       // Prints: fn
-  //     }
-  //   });
-  // } catch (error) {
-  //   ipcRenderer.send('fWW', error);
-  // }
-  ipcRenderer.send('fWW', directory);
-  ipcRenderer.send('fWW.Log', 'Enabled watcher');
+  if (fileWatch == null) {
+    ipcRenderer.send('fWW.Log', 'Enabling watcher on ' + directory);
+    fileWatch = fs.watch(directory, { recursive: true }, (eventType, filename) => {
+      if (filename) {
+        console.log(filename);
+        ipcRenderer.send('fWW.Log', filename);
+      }
+    });
+    ipcRenderer.send('fWW.Log', 'Enabled watcher');
+  } else {
+    ipcRenderer.send('fWW.Log', 'Watcher already registered');
+  }
 })
 
 ipcRenderer.on('fWW.StopListening', (event) => {
-  watcher.close();
+  fileWatch.close();
 })

@@ -190,6 +190,10 @@ function createWindow() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null
+    if (fileWorkerWindow) {
+      fileWorkerWindow = null
+    }
+    app.quit();
   })
 }
 
@@ -234,23 +238,18 @@ ipcMain.on('connectionDetails', async (event, arg) => {
   // console.log(arg);
   // mainWindow.webContents.send('connectionDetails', {response: true});
 
-  if (true) {
+  if (!fileWorkerWindow) {
     fileWorkerWindow = new BrowserWindow({
       show: false,
       webPreferences: { nodeIntegration: true }
     });
     fileWorkerWindow.loadFile('./workers/file-worker-window.html')
       .then(() => {
-          // Handle any error that occurred in any of the previous
-          // promises in the chain.
           fileWorkerWindow.webContents.send('fWW.ListenTo', arg.directory)
-          console.log('Sent watch instruction')
         })
         //
       .catch((err) => {
-        // Handle any error that occurred in any of the previous
-        // promises in the chain.
-        console.log(err);
+        console.error(err);
       });
   }
   mainWindow.webContents.send('connectionDetails', { response: true });
