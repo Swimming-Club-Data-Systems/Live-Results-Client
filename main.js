@@ -236,8 +236,48 @@ ipcMain.on('select-dirs', async (event, arg) => {
 
 ipcMain.on('connectionDetails', async (event, arg) => {
   // console.log(arg);
-  // mainWindow.webContents.send('connectionDetails', {response: true});
+  let org = {
+    id: '507f1f77bcf86cd799439011',
+    name: 'Chester-le-Street ASC',
+    clubCode: 'CLSE'
+  }
 
+  let testComp = {
+    name: 'Burns Meet',
+    venues: [
+
+    ],
+    license: 'NE170151',
+    dates: [
+      new Date()
+    ]
+  }
+
+  mainWindow.webContents.send('connectionDetails', {
+    status: true,
+    organisation: org,
+    competitions: [
+      testComp
+    ]
+  });
+
+  // if (!fileWorkerWindow) {
+  //   fileWorkerWindow = new BrowserWindow({
+  //     show: false,
+  //     webPreferences: { nodeIntegration: true }
+  //   });
+  //   fileWorkerWindow.loadFile('./workers/file-worker-window.html')
+  //     .then(() => {
+  //       fileWorkerWindow.webContents.send('fWW.ListenTo', arg.directory)
+  //     })
+  //     //
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }
+})
+
+ipcMain.on('startListening', async (event, arg) => {
   if (!fileWorkerWindow) {
     fileWorkerWindow = new BrowserWindow({
       show: false,
@@ -245,14 +285,13 @@ ipcMain.on('connectionDetails', async (event, arg) => {
     });
     fileWorkerWindow.loadFile('./workers/file-worker-window.html')
       .then(() => {
-          fileWorkerWindow.webContents.send('fWW.ListenTo', arg.directory)
-        })
-        //
+        fileWorkerWindow.webContents.send('fWW.ListenTo', arg.directory)
+      })
+      //
       .catch((err) => {
         console.error(err);
       });
   }
-  mainWindow.webContents.send('connectionDetails', { response: true });
 })
 
 ipcMain.on('fWW.Log', async (event, arg) => {
