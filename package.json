@@ -20,7 +20,7 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "autoprefixer": "^9.7.4",
-    "electron": "^7.2.3",
+    "electron": "^7.2.4",
     "node-sass": "^4.13.1",
     "postcss-cli": "^7.1.0",
     "sass": "^1.25.0"
